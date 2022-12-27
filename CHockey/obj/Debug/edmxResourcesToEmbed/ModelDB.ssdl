@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Matches">
+    <Key>
+      <PropertyRef Name="IDmatch" />
+    </Key>
+    <Property Name="IDmatch" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCommand1" Type="int" Nullable="false" />
+    <Property Name="IDCommand2" Type="int" Nullable="false" />
+    <Property Name="DateMatch" Type="date" />
+    <Property Name="TypeCompetition" Type="varchar" MaxLength="50" />
+    <Property Name="Command1" Type="varchar" MaxLength="25" />
+    <Property Name="Command2" Type="varchar" MaxLength="25" />
+    <Property Name="Result" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Participants">
+    <Key>
+      <PropertyRef Name="IDcommand" />
+    </Key>
+    <Property Name="IDcommand" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="25" />
+    <Property Name="CountPerson" Type="int" />
+    <Property Name="Countmatches" Type="int" />
+    <Property Name="Win" Type="int" />
+    <Property Name="Lose" Type="int" />
+    <Property Name="Draw" Type="int" />
+    <Property Name="Glasses" Type="int" />
+    <Property Name="Achievement" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sostav">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDName" Type="int" Nullable="false" />
+    <Property Name="number" Type="int" />
+    <Property Name="FIO" Type="varchar" MaxLength="50" />
+    <Property Name="amplua" Type="varchar" MaxLength="50" />
+    <Property Name="countmatch" Type="nchar" MaxLength="10" />
+    <Property Name="goals" Type="int" />
+    <Property Name="rshots" Type="int" />
+    <Property Name="selections" Type="int" />
+    <Property Name="gamble" Type="int" />
+  </EntityType>
+  <Association Name="FK_Matches_Participants">
+    <End Role="Participants" Type="Self.Participants" Multiplicity="1" />
+    <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Participants">
+        <PropertyRef Name="IDcommand" />
+      </Principal>
+      <Dependent Role="Matches">
+        <PropertyRef Name="IDCommand1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Matches_Participants1">
+    <End Role="Participants" Type="Self.Participants" Multiplicity="1" />
+    <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Participants">
+        <PropertyRef Name="IDcommand" />
+      </Principal>
+      <Dependent Role="Matches">
+        <PropertyRef Name="IDCommand2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sostav_Participants">
+    <End Role="Participants" Type="Self.Participants" Multiplicity="1" />
+    <End Role="Sostav" Type="Self.Sostav" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Participants">
+        <PropertyRef Name="IDcommand" />
+      </Principal>
+      <Dependent Role="Sostav">
+        <PropertyRef Name="IDName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ModelContainer">
+    <EntitySet Name="Matches" EntityType="Self.Matches" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sostav" EntityType="Self.Sostav" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Matches_Participants" Association="Self.FK_Matches_Participants">
+      <End Role="Participants" EntitySet="Participants" />
+      <End Role="Matches" EntitySet="Matches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Matches_Participants1" Association="Self.FK_Matches_Participants1">
+      <End Role="Participants" EntitySet="Participants" />
+      <End Role="Matches" EntitySet="Matches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sostav_Participants" Association="Self.FK_Sostav_Participants">
+      <End Role="Participants" EntitySet="Participants" />
+      <End Role="Sostav" EntitySet="Sostav" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

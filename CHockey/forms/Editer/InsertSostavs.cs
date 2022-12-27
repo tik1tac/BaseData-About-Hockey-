@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CHockey
+{
+    public partial class InsertSostavs : Form
+    {
+        private static HockeyEntities hock;
+        private static Edit edit;
+        public InsertSostavs()
+        {
+            hock = new HockeyEntities();
+            edit = new Edit();
+            InitializeComponent();
+        }
+
+        private void bunifuButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (edit != null)
+                {
+
+                    int id = edit.sostavgrid.RowCount + 1;
+                    DataRow nRow = edit.hockeyDataSet.Tables[2].NewRow();
+                    nRow[0] = id;
+                    nRow[1] = hock.Sostav.Where(p => p.Participants.Name == bunifuTextBox1.Text).Select(k => k.Participants.IDcommand).ToArray()[0];
+                    nRow[2] = bunifuTextBox2.Text;
+                    nRow[3] = bunifuTextBox3.Text;
+                    nRow[4] = bunifuTextBox4.Text;
+                    nRow[5] = bunifuTextBox5.Text;
+                    nRow[6] = bunifuTextBox6.Text;
+                    nRow[7] = bunifuTextBox7.Text;
+                    nRow[8] = bunifuTextBox8.Text;
+                    nRow[9] = bunifuTextBox9.Text;
+                    edit.hockeyDataSet.Tables[2].Rows.Add(nRow);
+                    edit.sostavTableAdapter.Update(edit.hockeyDataSet.Sostav);
+                    edit.hockeyDataSet.Tables[2].AcceptChanges();
+                    bunifuTextBox1.Text = "";
+                    bunifuTextBox2.Text = "";
+                    bunifuTextBox3.Text = "";
+                    bunifuTextBox4.Text = "";
+                    bunifuTextBox5.Text = "";
+                    bunifuTextBox6.Text = "";
+                    bunifuTextBox7.Text = "";
+                    bunifuTextBox8.Text = "";
+                    bunifuTextBox9.Text = "";
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Что-то пошло не так");
+            }
+
+        }
+
+        private void insertbut_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+    }
+}

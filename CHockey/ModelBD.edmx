@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище HockeyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Matches">
+          <Key>
+            <PropertyRef Name="IDmatch" />
+          </Key>
+          <Property Name="IDmatch" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDCommand1" Type="int" Nullable="false" />
+          <Property Name="IDCommand2" Type="int" Nullable="false" />
+          <Property Name="DateMatch" Type="date" />
+          <Property Name="TypeCompetition" Type="nvarchar(max)" />
+          <Property Name="Command1" Type="nvarchar(max)" />
+          <Property Name="Command2" Type="nvarchar(max)" />
+          <Property Name="Result" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Participants">
+          <Key>
+            <PropertyRef Name="IDcommand" />
+          </Key>
+          <Property Name="IDcommand" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Countmatches" Type="int" />
+          <Property Name="Win" Type="int" />
+          <Property Name="Lose" Type="int" />
+          <Property Name="Draw" Type="int" />
+          <Property Name="Glasses" Type="int" />
+          <Property Name="Achievement" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Sostav">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDName" Type="int" Nullable="false" />
+          <Property Name="number" Type="int" />
+          <Property Name="FIO" Type="nvarchar(max)" />
+          <Property Name="amplua" Type="nvarchar(max)" />
+          <Property Name="countmatch" Type="nvarchar(max)" />
+          <Property Name="goals" Type="int" />
+          <Property Name="rshots" Type="int" />
+          <Property Name="selections" Type="int" />
+          <Property Name="gamble" Type="int" />
+        </EntityType>
+        <Association Name="FK_Matches_Participants">
+          <End Role="Participants" Type="Self.Participants" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participants">
+              <PropertyRef Name="IDcommand" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="IDCommand1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_Participants1">
+          <End Role="Participants" Type="Self.Participants" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participants">
+              <PropertyRef Name="IDcommand" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="IDCommand2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sostav_Participants">
+          <End Role="Participants" Type="Self.Participants" Multiplicity="1" />
+          <End Role="Sostav" Type="Self.Sostav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participants">
+              <PropertyRef Name="IDcommand" />
+            </Principal>
+            <Dependent Role="Sostav">
+              <PropertyRef Name="IDName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище HockeyModelContainer">
+          <EntitySet Name="Matches" EntityType="Self.Matches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sostav" EntityType="Self.Sostav" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Matches_Participants" Association="Self.FK_Matches_Participants">
+            <End Role="Participants" EntitySet="Participants" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_Participants1" Association="Self.FK_Matches_Participants1">
+            <End Role="Participants" EntitySet="Participants" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sostav_Participants" Association="Self.FK_Sostav_Participants">
+            <End Role="Participants" EntitySet="Participants" />
+            <End Role="Sostav" EntitySet="Sostav" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HockeyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Matches">
+          <Key>
+            <PropertyRef Name="IDmatch" />
+          </Key>
+          <Property Name="IDmatch" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCommand1" Type="Int32" Nullable="false" />
+          <Property Name="IDCommand2" Type="Int32" Nullable="false" />
+          <Property Name="DateMatch" Type="DateTime" Precision="0" />
+          <Property Name="TypeCompetition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Command1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Command2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Participants" Relationship="Self.FK_Matches_Participants" FromRole="Matches" ToRole="Participants" />
+          <NavigationProperty Name="Participants1" Relationship="Self.FK_Matches_Participants1" FromRole="Matches" ToRole="Participants" />
+        </EntityType>
+        <EntityType Name="Participants">
+          <Key>
+            <PropertyRef Name="IDcommand" />
+          </Key>
+          <Property Name="IDcommand" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Countmatches" Type="Int32" />
+          <Property Name="Win" Type="Int32" />
+          <Property Name="Lose" Type="Int32" />
+          <Property Name="Draw" Type="Int32" />
+          <Property Name="Glasses" Type="Int32" />
+          <Property Name="Achievement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Matches" Relationship="Self.FK_Matches_Participants" FromRole="Participants" ToRole="Matches" />
+          <NavigationProperty Name="Matches1" Relationship="Self.FK_Matches_Participants1" FromRole="Participants" ToRole="Matches" />
+          <NavigationProperty Name="Sostav" Relationship="Self.FK_Sostav_Participants" FromRole="Participants" ToRole="Sostav" />
+        </EntityType>
+        <EntityType Name="Sostav">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDName" Type="Int32" Nullable="false" />
+          <Property Name="number" Type="Int32" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="amplua" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="countmatch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="goals" Type="Int32" />
+          <Property Name="rshots" Type="Int32" />
+          <Property Name="selections" Type="Int32" />
+          <Property Name="gamble" Type="Int32" />
+          <NavigationProperty Name="Participants" Relationship="Self.FK_Sostav_Participants" FromRole="Sostav" ToRole="Participants" />
+        </EntityType>
+        <Association Name="FK_Matches_Participants">
+          <End Role="Participants" Type="Self.Participants" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participants">
+              <PropertyRef Name="IDcommand" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="IDCommand1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_Participants1">
+          <End Role="Participants" Type="Self.Participants" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participants">
+              <PropertyRef Name="IDcommand" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="IDCommand2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sostav_Participants">
+          <End Role="Participants" Type="Self.Participants" Multiplicity="1" />
+          <End Role="Sostav" Type="Self.Sostav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participants">
+              <PropertyRef Name="IDcommand" />
+            </Principal>
+            <Dependent Role="Sostav">
+              <PropertyRef Name="IDName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HockeyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Matches" EntityType="Self.Matches" />
+          <EntitySet Name="Participants" EntityType="Self.Participants" />
+          <EntitySet Name="Sostav" EntityType="Self.Sostav" />
+          <AssociationSet Name="FK_Matches_Participants" Association="Self.FK_Matches_Participants">
+            <End Role="Participants" EntitySet="Participants" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_Participants1" Association="Self.FK_Matches_Participants1">
+            <End Role="Participants" EntitySet="Participants" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sostav_Participants" Association="Self.FK_Sostav_Participants">
+            <End Role="Participants" EntitySet="Participants" />
+            <End Role="Sostav" EntitySet="Sostav" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище HockeyModelContainer" CdmEntityContainer="HockeyEntities">
+          <EntitySetMapping Name="Matches">
+            <EntityTypeMapping TypeName="HockeyModel.Matches">
+              <MappingFragment StoreEntitySet="Matches">
+                <ScalarProperty Name="IDmatch" ColumnName="IDmatch" />
+                <ScalarProperty Name="IDCommand1" ColumnName="IDCommand1" />
+                <ScalarProperty Name="IDCommand2" ColumnName="IDCommand2" />
+                <ScalarProperty Name="DateMatch" ColumnName="DateMatch" />
+                <ScalarProperty Name="TypeCompetition" ColumnName="TypeCompetition" />
+                <ScalarProperty Name="Command1" ColumnName="Command1" />
+                <ScalarProperty Name="Command2" ColumnName="Command2" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Participants">
+            <EntityTypeMapping TypeName="HockeyModel.Participants">
+              <MappingFragment StoreEntitySet="Participants">
+                <ScalarProperty Name="IDcommand" ColumnName="IDcommand" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Countmatches" ColumnName="Countmatches" />
+                <ScalarProperty Name="Win" ColumnName="Win" />
+                <ScalarProperty Name="Lose" ColumnName="Lose" />
+                <ScalarProperty Name="Draw" ColumnName="Draw" />
+                <ScalarProperty Name="Glasses" ColumnName="Glasses" />
+                <ScalarProperty Name="Achievement" ColumnName="Achievement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sostav">
+            <EntityTypeMapping TypeName="HockeyModel.Sostav">
+              <MappingFragment StoreEntitySet="Sostav">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDName" ColumnName="IDName" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="amplua" ColumnName="amplua" />
+                <ScalarProperty Name="countmatch" ColumnName="countmatch" />
+                <ScalarProperty Name="goals" ColumnName="goals" />
+                <ScalarProperty Name="rshots" ColumnName="rshots" />
+                <ScalarProperty Name="selections" ColumnName="selections" />
+                <ScalarProperty Name="gamble" ColumnName="gamble" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

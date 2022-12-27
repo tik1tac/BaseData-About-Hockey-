@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="HockEntities">
+    <EntitySetMapping Name="Matches">
+      <EntityTypeMapping TypeName="Model.Matches">
+        <MappingFragment StoreEntitySet="Matches">
+          <ScalarProperty Name="IDmatch" ColumnName="IDmatch" />
+          <ScalarProperty Name="IDCommand1" ColumnName="IDCommand1" />
+          <ScalarProperty Name="IDCommand2" ColumnName="IDCommand2" />
+          <ScalarProperty Name="DateMatch" ColumnName="DateMatch" />
+          <ScalarProperty Name="TypeCompetition" ColumnName="TypeCompetition" />
+          <ScalarProperty Name="Command1" ColumnName="Command1" />
+          <ScalarProperty Name="Command2" ColumnName="Command2" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Participants">
+      <EntityTypeMapping TypeName="Model.Participants">
+        <MappingFragment StoreEntitySet="Participants">
+          <ScalarProperty Name="IDcommand" ColumnName="IDcommand" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="CountPerson" ColumnName="CountPerson" />
+          <ScalarProperty Name="Countmatches" ColumnName="Countmatches" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="Lose" ColumnName="Lose" />
+          <ScalarProperty Name="Draw" ColumnName="Draw" />
+          <ScalarProperty Name="Glasses" ColumnName="Glasses" />
+          <ScalarProperty Name="Achievement" ColumnName="Achievement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sostav">
+      <EntityTypeMapping TypeName="Model.Sostav">
+        <MappingFragment StoreEntitySet="Sostav">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDName" ColumnName="IDName" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="amplua" ColumnName="amplua" />
+          <ScalarProperty Name="countmatch" ColumnName="countmatch" />
+          <ScalarProperty Name="goals" ColumnName="goals" />
+          <ScalarProperty Name="rshots" ColumnName="rshots" />
+          <ScalarProperty Name="selections" ColumnName="selections" />
+          <ScalarProperty Name="gamble" ColumnName="gamble" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
